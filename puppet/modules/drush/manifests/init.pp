@@ -3,9 +3,14 @@ class drush {
 }
 
 class drush::install {
+	exec { "pear install console_table":
+		command => "/usr/bin/pear install --alldeps Console_Table",
+		require => Class['pear::config']
+	}
+
 	exec { "pear install drush":
-		command "pear install --alldeps pear.drush.org/drush",
+		command => "/usr/bin/pear install --alldeps pear.drush.org/drush",
 		creates => '/usr/bin/drush',
-		requires => Class['pear::install']
+		require => Class['pear::config']
 	}
 }

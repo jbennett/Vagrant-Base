@@ -3,12 +3,12 @@ node default {
     	command => "/usr/bin/apt-get update"
 	}
 
+	include nginx
+	include mysql
+	include php
+	include pear
 	include drush
 	# include git
-	include mysql
-	include nginx
-	include pear
-	include php
 
 	nginx::site {'default':
 		source => 'puppet:///modules/nginx/project-nginx.conf',

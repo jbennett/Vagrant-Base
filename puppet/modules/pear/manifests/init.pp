@@ -8,7 +8,7 @@ class pear::install {
 
 class pear::config {
 	exec { "pear auto_discover":
-		command => "pear config-set auto_discover 1",
+		command => "/usr/bin/pear config-set auto_discover 1",
 		require => Class['pear::install']
 	}
 }
