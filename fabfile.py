@@ -45,3 +45,7 @@ def pull_dev_db():
 	with cd('/vagrant/public'):
 		run('drush sql-sync @dev @self')
 		run('drush @self cc all')
+
+def pull_dev_files():
+	with cd('/vagrant/public'):
+		run('drush -y rsync @dev:%files/ @self:%files')
