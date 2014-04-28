@@ -43,7 +43,7 @@ This syncs your local database to the dev server database
 '''
 def pull_dev_db():
 	with cd('/vagrant/public'):
-		run('drush sql-sync @dev @self')
+		run('drush sql-sync @dev @self -y')
 		run('drush @self cc all')
 
 def pull_dev_files():
