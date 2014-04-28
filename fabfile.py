@@ -19,11 +19,13 @@ def boot_env():
 		local('if [ ! -f settings.php ] ; then cp default.settings.php settings.php ; fi')
 		local('chmod -w .')
 	with cd('/vagrant/public'):
-		run('drush site-install standard --db-url=mysql://drupal:drupal@localhost/drupal install_configure_form.update_status_module=\'array(FALSE,FALSE)\'')
-	pull_dev_db
+		run('drush site-install -y standard --db-url=mysql://drupal:drupal@localhost/drupal install_configure_form.update_status_module=\'array(FALSE,FALSE)\'')
+	clone_keys()
+	pull_dev_db()
+	pull_dev_files()
 
 
-# setup environments
+# setup environment variables
 ####################
 def vm():
 	env.hosts = ['vagrant@127.0.0.1']
