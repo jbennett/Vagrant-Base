@@ -9,9 +9,10 @@ import ntpath
 
 # Dev chores
 ####################
-def clone_keys():
-	put('~/.ssh/id_rsa.pub', '~/.ssh/id_rsa.pub', mode=0400)
-	put('~/.ssh/id_rsa', '~/.ssh/id_rsa', mode=0400)
+# ssh forward agent should make this not needed
+# def clone_keys():
+# 	put('~/.ssh/id_rsa.pub', '~/.ssh/id_rsa.pub', mode=0400)
+# 	put('~/.ssh/id_rsa', '~/.ssh/id_rsa', mode=0400)
 
 def boot_env():
 	with lcd('public/sites/default'):
@@ -20,7 +21,7 @@ def boot_env():
 		local('chmod -w .')
 	with cd('/vagrant/public'):
 		run('drush site-install -y standard --db-url=mysql://drupal:drupal@localhost/drupal install_configure_form.update_status_module=\'array(FALSE,FALSE)\'')
-	clone_keys()
+	# clone_keys() # provided by ssh forward agent
 	pull_dev_db()
 	pull_dev_files()
 
